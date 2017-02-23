@@ -237,6 +237,8 @@ double GetFrameRms(SpectFrame *frame, int seq_amplitude)
 	return frame->rms;
 }
 
+#pragma GCC visibility push(default)
+
 SpectSeq *SpectSeqCreate()
 {
 	SpectSeq *spect = malloc(sizeof(SpectSeq));
@@ -261,6 +263,8 @@ SpectSeq *SpectSeqCreate()
 	return spect;
 }
 
+
+
 void SpectSeqDestroy(SpectSeq *spect)
 {
 	int ix;
@@ -274,6 +278,8 @@ void SpectSeqDestroy(SpectSeq *spect)
 	free(spect->name);
 	free(spect);
 }
+
+#pragma GCC visibility pop
 
 static float GetFrameLength(SpectSeq *spect, int frame)
 {
@@ -289,6 +295,8 @@ static float GetFrameLength(SpectSeq *spect, int frame)
 	}
 	return (spect->frames[ix]->time - spect->frames[frame]->time) * 1000.0 + adjust;
 }
+
+#pragma GCC visibility push(default)
 
 espeak_ng_STATUS LoadSpectSeq(SpectSeq *spect, const char *filename)
 {
@@ -407,3 +415,5 @@ espeak_ng_STATUS LoadSpectSeq(SpectSeq *spect, const char *filename)
 	fclose(stream);
 	return ENS_OK;
 }
+
+#pragma GCC visibility pop
